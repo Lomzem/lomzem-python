@@ -4,7 +4,6 @@ import sys
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup as soup
 
-
 if len(sys.argv) < 3:
 	print('\n\nERROR!')
 	print('Correct Usage: gogoa-dl.py <url> <episode range> <output_folder>')
@@ -23,16 +22,14 @@ else:
 	for episode_number in range(first_episode, last_episode+1):
 		episode_link = anime_link + str(episode_number)
 
-		# episode_website_req = Request(episode_link, headers={'User-Agent': 'Mozilla/5.0'})
 		episode_website = urlopen(Request(episode_link, headers={'User-Agent': 'Mozilla/5.0'}))
-		# episode_website = urlopen(episode_link)
 		episode_html = episode_website.read()
 		episode_website.close()
 
 		soup_page = soup(episode_html, 'html.parser')
-		a_tag = soup_page.find('div', class_='download-anime').findChild()
+		a_tag = soup_page.find('div', class_='anime_video_body_cate')
 		a_tag = str(a_tag)
-		download_page = re.findall(r'href="(\S+)"', a_tag)[0]
+		download_page = re.findall(r'href="(\S+)"', a_tag)[-1]
 
 		dl_page_website = urlopen(Request(download_page, headers={'User-Agent': 'Mozilla/5.0'}))
 		dl_page_html = dl_page_website.read()

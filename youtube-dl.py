@@ -11,12 +11,14 @@ SINGLE_OR_PLAYLIST = 'single'
 
 for arg in arguments[1:]:
 	if arg == 'help':
-		print('Current Options: "single", "playlist", "audio"\nBy default: Downloads single video')
+		print('Current Options: "single", "playlist", "video", "audio"\nBy default: Downloads single video')
 		exit()
 	elif arg == 'single':
 		SINGLE_OR_PLAYLIST = 'single'
 	elif arg == 'playlist':
 		SINGLE_OR_PLAYLIST = 'playlist'
+	elif arg == 'video':
+		EXTRACT_AUDIO = False
 	elif arg == 'audio':
 		EXTRACT_AUDIO = True
 

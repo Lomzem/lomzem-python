@@ -1,11 +1,11 @@
 import os
+import shutil
 import re
 
-os.chdir('C:/Users/Lomzem/Desktop/Documents By Readdle/Game Grumps - Detroit Become Human')
 
-for file in os.listdir():
-	game, title, part, show = file.split(' - ')
-	show, ext = show.split('.')
-	part = part.title()
-	new_name = f'{part} - {title}.{ext}'
-	os.rename(file, new_name)
+os.chdir('C:/Users/Lomzem/Desktop/AbstractMusic/')
+for song_file in os.listdir():
+	# song_file, song_ext = os.path.splitext(song_file)
+	new_song_title = re.sub(r'\s\(Prod\..+?(?=\))\)', '', song_file)
+	print(repr(new_song_title))
+	os.rename(song_file, new_song_title)
