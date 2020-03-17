@@ -5,6 +5,7 @@ import paramiko
 
 # input_file = 'C:\\Users\\Lomzem\\Desktop\\Literature.pdf'
 input_file = sys.argv[1]
+input_file = os.path.basename(input_file)
 output_dir = '/var/mobile/Documents/docbyr/'
 
 ssh_client = paramiko.SSHClient()
