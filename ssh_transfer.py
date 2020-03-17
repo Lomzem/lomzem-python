@@ -5,7 +5,6 @@ import paramiko
 
 # input_file = 'C:\\Users\\Lomzem\\Desktop\\Literature.pdf'
 input_file = sys.argv[1]
-input_file = os.path.basename(input_file)
 output_dir = '/var/mobile/Documents/docbyr/'
 
 ssh_client = paramiko.SSHClient()
@@ -21,7 +20,7 @@ elif os.path.isdir(input_file):
 	path_len = (len(input_file))-(len(os.path.basename(input_file)))
 	print('Starting...')
 	for dirpath, dirs, files in os.walk(input_file):
-		needed_dir = os.path.join(output_dir, dirpath).replace('\\', '/')
+		needed_dir = os.path.join(output_dir, os.path.basename(dirpath)).replace('\\', '/')
 		try:
 			ftp_client.mkdir(needed_dir)
 		except IOError:
